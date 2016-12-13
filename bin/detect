@@ -1,0 +1,7 @@
+#!/bin/sh
+
+##
+# Detect that Salesforce Buildpack is applicable to Force.com project.
+##
+
+exit 0
