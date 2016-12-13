@@ -112,8 +112,8 @@ fi
 # setup env to support appcloud and force.com plugin commands
 mkdir -p .local/.appcloud
 
-echo "$SFDX_HUB_ORG" > $HOME/.local/.appcloud/hubOrg.json
-echo "$SFDX_CONFIG" > $HOME/.local/.appcloud/workspace_config.json
+echo "`echo $SFDX_HUB_ORG | sed -e 's/"/\\"/g'`" > $HOME/.local/.appcloud/hubOrg.json
+echo "`echo $SFDX_CONFIG | sed -e 's/"/\\"/g'`" > $HOME/.local/.appcloud/workspace_config.json
 
 EOF
 
