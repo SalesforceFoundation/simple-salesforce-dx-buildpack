@@ -83,7 +83,6 @@ if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
 fi
 
 heroku plugins:install salesforce-alm@$SALESFORCE_APPCLOUD_TOOLBET_DIST_TAG
-heroku plugins:install force-cli@$SALESFORCE_FORCE_COM_CLI_DIST_TAG
 heroku plugins
 
 status "Heroku CLI and SFDX plugins installation complete"
@@ -113,8 +112,8 @@ fi
 # setup env to support appcloud and force.com plugin commands
 mkdir -p .local/.appcloud
 
-echo $SFDX_HUB_ORG > $HOME/.local/.appcloud/hubOrg.json
-echo $SFDX_CONFIG > $HOME/.local/.appcloud/workspace_config.json
+echo "$SFDX_HUB_ORG" > $HOME/.local/.appcloud/hubOrg.json
+echo "$SFDX_CONFIG" > $HOME/.local/.appcloud/workspace_config.json
 
 EOF
 
@@ -128,8 +127,7 @@ fi
 ###   F I N A L   N O T E S
 highlight "    "
 highlight "### N O T E ###"
-highlight "Heroku CLI and SFDX plugins were installed for use in release and test phase scripts."
-highlight "To use SFDX CLI commands, ensure that '.profile.d/salesforce-env.sh' is sourced to setup shell environment."
+highlight "Heroku CLI and SFDX plugins are installed."
 highlight "###############"
 highlight "    "
 
