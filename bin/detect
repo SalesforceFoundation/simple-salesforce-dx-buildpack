@@ -4,5 +4,5 @@
 # Detect that Salesforce Buildpack is applicable to Force.com project.
 ##
 
-echo "Detection always returns True for this buildpack.  Don't include it if you don't need it"
+echo "Simple Salesforce DX"
 exit 0
