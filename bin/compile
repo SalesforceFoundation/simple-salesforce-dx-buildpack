@@ -110,6 +110,7 @@ if [ "\$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     done
 fi
 # setup env to support sfdx commands
+mkdir -p .sfdx
 mkdir -p .local/.sfdx
 
 echo "\$SFDX_HUB_ORG" > $HOME/.local/.sfdx/${SFDX_HUB_ORG_USERNAME}.json
