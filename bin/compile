@@ -115,7 +115,7 @@ fi
 # setup env to support sfdx commands
 mkdir -p .sfdx
 mkdir -p .local/.sfdx
-ln -s .local/.sfdx .local/.appcloud
+ln -s /app/.local/.sfdx /app/.local/.appcloud
 
 echo "\$SFDX_HUB_ORG" > $HOME/.local/.sfdx/${SFDX_HUB_ORG_USERNAME}.json
 echo '{ "defaultdevhubusername": "'$SFDX_HUB_ORG_USERNAME'" }' > $HOME/.sfdx/sfdx-config.json
