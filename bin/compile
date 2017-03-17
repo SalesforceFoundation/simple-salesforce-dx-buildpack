@@ -113,7 +113,6 @@ fi
 mkdir -p .local/.sfdx
 
 echo "\$SFDX_HUB_ORG" > $HOME/.local/.sfdx/${SFDX_HUB_ORG_USERNAME}.json
-echo "\$SFDX_CONFIG" > $HOME/.local/.appcloud/workspace_config.json
 echo '{ "defaultdevhubusername": "'$SFDX_HUB_ORG_USERNAME'" }' > $HOME/.local/sfdx/sfdx-config.json
 
 EOF
