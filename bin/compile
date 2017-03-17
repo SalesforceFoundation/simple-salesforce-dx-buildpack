@@ -95,17 +95,17 @@ mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/salesforce-env.sh
 
 # set path so release and customer scripts and use heroku cli
-export PATH="\$PATH:\$HOME/$VENDORED_HEROKU_CLI/heroku/bin"
+export PATH="\$PATH:\$HOME/$VENDORED_SFDX_CLI/heroku/bin"
 # set so heroku cli can re-use plugins
 export XDG_DATA_HOME="\$HOME/.local"
 # set so heroku cli can see heroku/autoupdate to not trigger update
 export XDG_CACHE_HOME="\$HOME/.cache"
 # set node path to shared modules
 
-# log SALESFORCE_ and HEROKU_ config vars
+# log SALESFORCE_ and SFDX_ config vars
 if [ "\$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     echo "[DEBUG] PATH=\$PATH"
-    for e in \$(env | grep '^SALESFORCE_\|^HEROKU_\|^APPCLOUD_\|^XDG_\|^NODE_'); do
+    for e in \$(env | grep '^SALESFORCE_\|^SFDX_\|^APPCLOUD_\|^XDG_\|^NODE_'); do
         echo "[DEBUG] \$e"
     done
 fi
