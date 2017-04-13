@@ -117,9 +117,9 @@ mkdir -p .sfdx
 mkdir -p .local/.sfdx
 ln -s /app/.local/.sfdx /app/.local/.appcloud
 
-echo "\$SFDX_HUB_ORG" > $HOME/.local/.sfdx/${SFDX_HUB_ORG_USERNAME}.json
-echo '{ "defaultdevhubusername": "'$SFDX_HUB_ORG_USERNAME'" }' > $HOME/.sfdx/sfdx-config.json
+echo "\$SFDX_HUB_KEY" > $HOME/.local/.sfdx_server.key
 
+sfdx force:auth:jwt:grant --clientid "$SFDX_CLIENT_ID" --jwtkeyfile $HOME/.local/.sfdx_server.key --username $SFDX_HUB_USERNAME --setdefaulthubusername
 EOF
 
 chmod +x $BUILD_DIR/.profile.d/salesforce-env.sh
