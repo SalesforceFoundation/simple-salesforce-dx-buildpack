@@ -128,6 +128,7 @@ for counter in \`eval echo {1..\$CLIENT_ID_COUNT}\`; do
     else
         sfdx force:auth:jwt:grant --clientid "\$clientid" --jwtkeyfile \$HOME/.local/.sfdx_server.key --username \$username
     fi
+done
 EOF
 
 chmod +x $BUILD_DIR/.profile.d/salesforce-env.sh
