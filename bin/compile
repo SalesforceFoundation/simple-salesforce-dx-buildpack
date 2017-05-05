@@ -82,6 +82,9 @@ touch $XDG_CACHE_HOME/heroku/autoupdate
 # log installed plugins
 sfdx plugins
 
+# update sfdx
+sfdx update
+
 status "SFDX CLI and SFDX plugins installation complete"
 
 
