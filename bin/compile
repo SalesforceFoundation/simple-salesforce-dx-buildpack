@@ -119,10 +119,10 @@ ln -s /app/.local/.sfdx /app/.local/.appcloud
 
 echo "\$SFDX_HUB_KEY" > \$HOME/.local/.sfdx_server.key
 
-CLIENT_ID_COUNT=`echo "\$SFDX_CLIENT_ID" | sed -e 's/[^\|]//g' | wc -m`
-for counter in `eval echo {1..\$CLIENT_ID_COUNT}`; do
-    clientid=`echo "\$SFDX_CLIENT_ID" | cut -f \$counter -d ','`
-    username=`echo "\$SFDX_HUB_USERNAME" | cut -f \$counter -d ','`
+CLIENT_ID_COUNT=\`echo "\$SFDX_CLIENT_ID" | sed -e 's/[^\|]//g' | wc -m\`
+for counter in \`eval echo {1..\$CLIENT_ID_COUNT}\`; do
+    clientid=\`echo "\$SFDX_CLIENT_ID" | cut -f \$counter -d ','\`
+    username=\`echo "\$SFDX_HUB_USERNAME" | cut -f \$counter -d ','\`
     if [\$counter == 1]; then
         sfdx force:auth:jwt:grant --clientid "\$clientid" --jwtkeyfile \$HOME/.local/.sfdx_server.key --username \$username --setdefaultdevhubusername
     else
