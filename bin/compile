@@ -60,9 +60,9 @@ if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     debug "SFDX_CLI_URL=$SFDX_CLI_URL"
 fi
 if [[ -z "$(which wget)" ]]; then
-  curl -s $SFDX_CLI_URL | tar xzf -
+  curl -s $SFDX_CLI_URL | tar xzfJ -
 else
-  wget -qO- $SFDX_CLI_URL | tar xzf -
+  wget -qO- $SFDX_CLI_URL | tar xzfJ -
 fi
 
 export PATH="$PATH:$BUILD_DIR/$VENDORED_SFDX_CLI/heroku/bin"
