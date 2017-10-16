@@ -60,24 +60,24 @@ if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     debug "SFDX_CLI_URL=$SFDX_CLI_URL"
 fi
 if [[ -z "$(which wget)" ]]; then
-  curl -s $SFDX_CLI_URL | tar xzf -
+  curl -s $SFDX_CLI_URL | tar xJf -
 else
-  wget -qO- $SFDX_CLI_URL | tar xzf -
+  wget -qO- $SFDX_CLI_URL | tar xJf -
 fi
 
-export PATH="$PATH:$BUILD_DIR/$VENDORED_SFDX_CLI/heroku/bin"
+export PATH="$PATH:$BUILD_DIR/$VENDORED_SFDX_CLI/sfdx/bin"
 export XDG_DATA_HOME="$BUILD_DIR/.local"
 export XDG_CACHE_HOME="$BUILD_DIR/.cache"
 
 if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
-    debug $BUILD_DIR/$VENDORED_SFDX_CLI/heroku/bin:
-    ls -Llsrt $BUILD_DIR/$VENDORED_SFDX_CLI/heroku/bin
+    debug $BUILD_DIR/$VENDORED_SFDX_CLI/sfdx/bin:
+    ls -Llsrt $BUILD_DIR/$VENDORED_SFDX_CLI/sfdx/bin
 fi
 
 # touch autoupdate file to prevent 'heroku update' (which breaks
 # tar as 'heroku update' alters what is being tar'd)
-mkdir -p $XDG_CACHE_HOME/heroku
-touch $XDG_CACHE_HOME/heroku/autoupdate
+mkdir -p $XDG_CACHE_HOME/sfdx
+touch $XDG_CACHE_HOME/sfdx/autoupdate
 
 # log installed plugins
 sfdx plugins
