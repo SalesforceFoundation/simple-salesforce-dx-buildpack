@@ -47,7 +47,7 @@ export SALESFORCE_DIR=$SALESFORCE_DIR
 status "Installing SFDX CLI and SFDX plugins"
 
 # vendor directories
-VENDORED_SFDX_CLI="vendor/sfdx-cli"
+VENDORED_SFDX_CLI="sfdx"
 
 # download and extract the client tarball
 rm -rf "$BUILD_DIR/$VENDORED_SFDX_CLI"
@@ -65,13 +65,13 @@ else
   wget -qO- $SFDX_CLI_URL | tar xJf -
 fi
 
-export PATH="$PATH:$BUILD_DIR/$VENDORED_SFDX_CLI/sfdx/bin"
+export PATH="$PATH:$BUILD_DIR/sfdx/bin"
 export XDG_DATA_HOME="$BUILD_DIR/.local"
 export XDG_CACHE_HOME="$BUILD_DIR/.cache"
 
 if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
-    debug $BUILD_DIR/$VENDORED_SFDX_CLI/sfdx/bin:
-    ls -Llsrt $BUILD_DIR/$VENDORED_SFDX_CLI/sfdx/bin
+    debug $BUILD_DIR/sfdx/bin:
+    ls -Llsrt $BUILD_DIR/sfdx/bin
 fi
 
 # touch autoupdate file to prevent 'heroku update' (which breaks
@@ -98,7 +98,7 @@ mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/salesforce-env.sh
 
 # set path so release and customer scripts and use heroku cli
-export PATH="\$PATH:\$HOME/$VENDORED_SFDX_CLI/heroku/bin"
+export PATH="\$PATH:\$HOME/sfdx/bin"
 # set so heroku cli can re-use plugins
 export XDG_DATA_HOME="\$HOME/.local"
 # set so heroku cli can see heroku/autoupdate to not trigger update
