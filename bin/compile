@@ -87,9 +87,6 @@ sfdx plugins
 
 status "SFDX CLI and SFDX plugins installation complete"
 
-
-
-
 ###   W R I T E   E N V   P R O F I L E   S C R I P T
 # write env script to set various vars so release and test scripts
 # can use heroku cli and plugins
@@ -149,3 +146,5 @@ highlight "###############"
 highlight "    "
 
 highlight "DONE!  Completed in $(($SECONDS - $START_TIME))s"
+
+sleep 5
