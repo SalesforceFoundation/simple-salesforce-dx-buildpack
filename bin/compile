@@ -83,7 +83,7 @@ touch $XDG_CACHE_HOME/sfdx/autoupdate
 sfdx plugins
 
 # update sfdx
-sfdx update
+#sfdx update
 
 status "SFDX CLI and SFDX plugins installation complete"
 
@@ -149,6 +149,3 @@ highlight "###############"
 highlight "    "
 
 highlight "DONE!  Completed in $(($SECONDS - $START_TIME))s"
-
-echo "Sleeping for 10 seconds to allow sfdx to fully update"
-sleep 10
