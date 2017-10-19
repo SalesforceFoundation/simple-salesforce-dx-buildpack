@@ -141,8 +141,6 @@ if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     debug "`cat $BUILD_DIR/.profile.d/salesforce-env.sh`"
 fi
 
-sleep 1
-
 ###   F I N A L   N O T E S
 highlight "    "
 highlight "### N O T E ###"
@@ -151,3 +149,6 @@ highlight "###############"
 highlight "    "
 
 highlight "DONE!  Completed in $(($SECONDS - $START_TIME))s"
+
+echo "Sleeping for 10 seconds to allow sfdx to fully update"
+sleep 10
