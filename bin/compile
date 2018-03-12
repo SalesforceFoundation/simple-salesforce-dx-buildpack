@@ -102,9 +102,6 @@ export XDG_DATA_HOME="\$HOME/.local"
 export XDG_CACHE_HOME="\$HOME/.cache"
 # set node path to shared modules
 
-# disable encryption cause lib secret requires head
-export SFDX_DISABLE_ENCRYPTION=true;
-
 # log SALESFORCE_ and SFDX_ config vars
 if [ "\$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     echo "[DEBUG] PATH=\$PATH"
