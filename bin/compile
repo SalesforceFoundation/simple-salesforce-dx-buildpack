@@ -55,7 +55,7 @@ rm -rf "$BUILD_DIR/$VENDORED_SFDX_CLI"
 # install sfdx cli w/ all sfdx plugins
 cd "$BUILD_DIR"
 #: ${SFDX_CLI_VERSION:="LATEST"}
-SFDX_CLI_URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+SFDX_CLI_URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-cli/channels/stable/sfdx-cli-linux-x64.tar.xz
 if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     debug "SFDX_CLI_URL=$SFDX_CLI_URL"
 fi
@@ -83,7 +83,7 @@ touch $XDG_CACHE_HOME/sfdx/autoupdate
 sfdx plugins
 
 # update sfdx
-#sfdx update
+sfdx update
 
 status "SFDX CLI and SFDX plugins installation complete"
 
@@ -116,17 +116,7 @@ ln -s /app/.local/.sfdx /app/.local/.appcloud
 
 echo "\$SFDX_HUB_KEY" > \$HOME/.local/.sfdx_server.key
 
-CLIENT_ID_COUNT=\`echo "\$SFDX_CLIENT_ID" | sed -e 's/[^\,]//g' | wc -m\`
-CLIENT_ID_COUNT=\$((\$CLIENT_ID_COUNT + 1))
-for counter in \`eval echo {1..\$CLIENT_ID_COUNT}\`; do
-    clientid=\`echo "\$SFDX_CLIENT_ID" | cut -f \$counter -d ','\`
-    username=\`echo "\$SFDX_HUB_USERNAME" | cut -f \$counter -d ','\`
-    if [ \$counter == 1 ]; then
-        sfdx force:auth:jwt:grant --clientid "\$clientid" --jwtkeyfile \$HOME/.local/.sfdx_server.key --username \$username --setdefaultdevhubusername
-    else
-        sfdx force:auth:jwt:grant --clientid "\$clientid" --jwtkeyfile \$HOME/.local/.sfdx_server.key --username \$username
-    fi
-done
+sfdx force:auth:jwt:grant -d -i "\$SFDX_CLIENT_ID" -f \$HOME/.local/.sfdx_server.key -u \$SFDX_HUB_USERNAME
 EOF
 
 chmod +x $BUILD_DIR/.profile.d/salesforce-env.sh
