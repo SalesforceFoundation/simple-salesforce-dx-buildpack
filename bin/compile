@@ -59,13 +59,15 @@ SFDX_CLI_URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-cli/chan
 if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     debug "SFDX_CLI_URL=$SFDX_CLI_URL"
 fi
-if [[ -z "$(which wget)" ]]; then
-  curl -s $SFDX_CLI_URL | tar xJ -C sfdx --strip-components 1
-else
-  wget -qO- $SFDX_CLI_URL | tar xJ -C sfdx --strip-components 1
-fi
+mkdir sfdx
+curl -s $SFDX_CLI_URL | tar xJ -C sfdx --strip-components 1
 
-export PATH="$PATH:$BUILD_DIR/sfdx/bin"
+rm -rf "$BUILD_DIR/vendor/sfdx"
+mkdir -p "$BUILD_DIR/vendor/sfdx"
+cp -r sfdx "$BUILD_DIR/vendor/sfdx/cli"
+chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
+
+export PATH="$PATH:$BUILD_DIR/vendor/sfdx/cli/bin"
 export XDG_DATA_HOME="$BUILD_DIR/.local"
 export XDG_CACHE_HOME="$BUILD_DIR/.cache"
 
