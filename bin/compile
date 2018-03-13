@@ -60,9 +60,9 @@ if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     debug "SFDX_CLI_URL=$SFDX_CLI_URL"
 fi
 if [[ -z "$(which wget)" ]]; then
-  curl -s $SFDX_CLI_URL | tar xJf -
+  curl -s $SFDX_CLI_URL | tar xJ -C sfdx --strip-components 1
 else
-  wget -qO- $SFDX_CLI_URL | tar xJf -
+  wget -qO- $SFDX_CLI_URL | tar xJ -C sfdx --strip-components 1
 fi
 
 export PATH="$PATH:$BUILD_DIR/sfdx/bin"
