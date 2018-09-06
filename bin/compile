@@ -118,7 +118,7 @@ ln -s /app/.local/.sfdx /app/.local/.appcloud
 
 echo "\$SFDX_HUB_KEY" > \$HOME/.local/.sfdx_server.key
 
-sfdx force:auth:jwt:grant -d -i "\$SFDX_CLIENT_ID" -f \$HOME/.local/.sfdx_server.key -u \$SFDX_HUB_USERNAME
+sfdx force:auth:jwt:grant -d -a DevHub -i "\$SFDX_CLIENT_ID" -f \$HOME/.local/.sfdx_server.key -u \$SFDX_HUB_USERNAME
 EOF
 
 chmod +x $BUILD_DIR/.profile.d/salesforce-env.sh
