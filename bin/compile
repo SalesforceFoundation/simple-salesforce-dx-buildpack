@@ -123,6 +123,10 @@ if [ "\$SFDX_LOGIN_URL" == "" ]; then
 else
     sfdx force:auth:jwt:grant -d -a DevHub -i "\$SFDX_CLIENT_ID" -f \$HOME/.local/.sfdx_server.key -u \$SFDX_HUB_USERNAME -r \$SFDX_LOGIN_URL
 fi
+
+if [ -n "\$SF_SANDBOX_LOGIN_URL" ]; then
+    echo "{\"signupTargetLoginUrl\": \"\$SF_SANDBOX_LOGIN_URL\" }" > .sfdx/sfdx-project.json
+fi
 EOF
 
 chmod +x $BUILD_DIR/.profile.d/salesforce-env.sh
