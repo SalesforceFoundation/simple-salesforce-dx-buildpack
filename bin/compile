@@ -81,11 +81,13 @@ fi
 mkdir -p $XDG_CACHE_HOME/sfdx
 touch $XDG_CACHE_HOME/sfdx/autoupdate
 
-# log installed plugins
-sfdx plugins
-
 # update sfdx
 sfdx update
+# workaround for "sfdx update" pulling a version of the salesforcedx plugin that was rolled back
+sfdx plugins:install salesforcedx@latest
+
+# log installed plugins
+sfdx plugins --core
 
 status "SFDX CLI and SFDX plugins installation complete"
 
