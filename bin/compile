@@ -46,11 +46,8 @@ export SALESFORCE_DIR=$SALESFORCE_DIR
 ###   S F D X   C L I
 status "Installing SFDX CLI and SFDX plugins"
 
-# vendor directories
-VENDORED_SFDX_CLI="sfdx"
-
 # download and extract the client tarball
-rm -rf "$BUILD_DIR/$VENDORED_SFDX_CLI"
+rm -rf "$BUILD_DIR/sfdx"
 
 # install sfdx cli w/ all sfdx plugins
 cd "$BUILD_DIR"
@@ -62,12 +59,7 @@ fi
 mkdir sfdx
 curl -s $SFDX_CLI_URL | tar xJ -C sfdx --strip-components 1
 
-rm -rf "$BUILD_DIR/vendor/sfdx"
-mkdir -p "$BUILD_DIR/vendor/sfdx"
-cp -r sfdx "$BUILD_DIR/vendor/sfdx/cli"
-chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
-
-export PATH="$PATH:$BUILD_DIR/vendor/sfdx/cli/bin"
+export PATH="$PATH:$BUILD_DIR/sfdx/cli/bin"
 export XDG_DATA_HOME="$BUILD_DIR/.local"
 export XDG_CACHE_HOME="$BUILD_DIR/.cache"
 
@@ -83,8 +75,6 @@ touch $XDG_CACHE_HOME/sfdx/autoupdate
 
 # update sfdx
 sfdx update
-# workaround for "sfdx update" pulling a version of the salesforcedx plugin that was rolled back
-sfdx plugins:install salesforcedx@latest
 
 # log installed plugins
 sfdx plugins --core
