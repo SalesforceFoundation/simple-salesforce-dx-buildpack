@@ -46,12 +46,9 @@ export SALESFORCE_DIR=$SALESFORCE_DIR
 ###   S F D X   C L I
 status "Installing SFDX CLI and SFDX plugins"
 
-# download and extract the client tarball
-rm -rf "$BUILD_DIR/sfdx"
-
 # install sfdx cli w/ all sfdx plugins
+rm -rf "$BUILD_DIR/sfdx"
 cd "$BUILD_DIR"
-#: ${SFDX_CLI_VERSION:="LATEST"}
 SFDX_CLI_URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-cli/channels/stable/sfdx-cli-linux-x64.tar.xz
 if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     debug "SFDX_CLI_URL=$SFDX_CLI_URL"
@@ -59,7 +56,7 @@ fi
 mkdir sfdx
 curl -s $SFDX_CLI_URL | tar xJ -C sfdx --strip-components 1
 
-export PATH="$PATH:$BUILD_DIR/sfdx/cli/bin"
+export PATH="$PATH:$BUILD_DIR/sfdx/bin"
 export XDG_DATA_HOME="$BUILD_DIR/.local"
 export XDG_CACHE_HOME="$BUILD_DIR/.cache"
 
