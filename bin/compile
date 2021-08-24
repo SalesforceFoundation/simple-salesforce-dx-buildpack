@@ -109,10 +109,12 @@ ln -s /app/.local/.sfdx /app/.local/.appcloud
 
 echo "\$SFDX_HUB_KEY" > \$HOME/.local/.sfdx_server.key
 
-if [ "\$SFDX_LOGIN_URL" == "" ]; then
-    sfdx force:auth:jwt:grant -d -a DevHub -i "\$SFDX_CLIENT_ID" -f \$HOME/.local/.sfdx_server.key -u \$SFDX_HUB_USERNAME
-else
-    sfdx force:auth:jwt:grant -d -a DevHub -i "\$SFDX_CLIENT_ID" -f \$HOME/.local/.sfdx_server.key -u \$SFDX_HUB_USERNAME -r \$SFDX_LOGIN_URL
+if [[ -n "$SFDX_CLIENT_ID" && -n "$SFDX_HUB_USERNAME ]]; then
+    if [ "\$SFDX_LOGIN_URL" == "" ]; then
+        sfdx force:auth:jwt:grant -d -a DevHub -i "\$SFDX_CLIENT_ID" -f \$HOME/.local/.sfdx_server.key -u \$SFDX_HUB_USERNAME
+    else
+        sfdx force:auth:jwt:grant -d -a DevHub -i "\$SFDX_CLIENT_ID" -f \$HOME/.local/.sfdx_server.key -u \$SFDX_HUB_USERNAME -r \$SFDX_LOGIN_URL
+    fi
 fi
 
 if [ -n "\$SF_SANDBOX_LOGIN_URL" ]; then
