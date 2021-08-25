@@ -109,7 +109,7 @@ ln -s /app/.local/.sfdx /app/.local/.appcloud
 
 echo "\$SFDX_HUB_KEY" > \$HOME/.local/.sfdx_server.key
 
-if [[ -n "$SFDX_CLIENT_ID" && -n "$SFDX_HUB_USERNAME ]]; then
+if [[ -n "$SFDX_CLIENT_ID" && -n "$SFDX_HUB_USERNAME" ]]; then
     if [ "\$SFDX_LOGIN_URL" == "" ]; then
         sfdx auth:jwt:grant -d -a DevHub -i "\$SFDX_CLIENT_ID" -f \$HOME/.local/.sfdx_server.key -u \$SFDX_HUB_USERNAME
     else
