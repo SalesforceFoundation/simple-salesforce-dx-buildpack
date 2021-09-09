@@ -72,8 +72,6 @@ touch $XDG_CACHE_HOME/sfdx/autoupdate
 
 # update sfdx
 sfdx update
-# temporary workaround for scratch org regression in 52.2.2
-sfdx plugins:install salesforce-alm@52.1.0
 
 # log installed plugins
 sfdx plugins --core
