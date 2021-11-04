@@ -70,9 +70,6 @@ fi
 mkdir -p $XDG_CACHE_HOME/sfdx
 touch $XDG_CACHE_HOME/sfdx/autoupdate
 
-# update sfdx
-sfdx update stable-rc
-
 # log installed plugins
 sfdx plugins --core
 
