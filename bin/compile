@@ -49,7 +49,9 @@ status "Installing SFDX CLI and SFDX plugins"
 # install sfdx cli w/ all sfdx plugins
 rm -rf "$BUILD_DIR/sfdx"
 cd "$BUILD_DIR"
-SFDX_CLI_URL=https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+if [ -z $SFDX_CLI_URL ]; then
+    SFDX_CLI_URL=https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+fi
 if [ "$SALESFORCE_BUILDPACK_DEBUG" == "true" ]; then
     debug "SFDX_CLI_URL=$SFDX_CLI_URL"
 fi
