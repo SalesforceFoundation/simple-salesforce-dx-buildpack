@@ -38,6 +38,7 @@ export_env_dir
 # set defaults for optional config vars
 : ${SALESFORCE_BUILDPACK_VERBOSE:="false"}
 : ${SALESFORCE_BUILDPACK_DEBUG:="false"}
+: ${SALESFORCE_BUILDPACK_JIT_INSTALL:="true"}
 
 mkdir -p $SALESFORCE_DIR
 export SALESFORCE_DIR=$SALESFORCE_DIR
@@ -81,6 +82,14 @@ then
   sf --version
   sf plugins --core
 fi
+
+if [ "$SALESFORCE_BUILDPACK_JIT_INSTALL" == "true" ] && [ -e "$BUILD_DIR/sfdx/package.json" ]; then
+    JIT_PLUGINS=$(jq -r '.oclif.jitPlugins | to_entries | map("\(.key)@\(.value)") | .[]')
+    for PLUGIN in $JIT_PLUGINS; do
+        sfdx plugin install "$PLUGIN"
+    done
+fi
+
 
 status "SFDX CLI and SFDX plugins installation complete"
 
